@@ -18,7 +18,7 @@ Content-Type: application/json
 {
   "libraryEventId": null,
   "book": {
-    "bookId": "2",
+    "bookId": "1",
     "bookName": "Learn kafka",
     "bookAuthor": "Dmitrii Cheremisin"
   }
@@ -42,10 +42,10 @@ PUT http://localhost:8080/v1/libraryEvent
 Content-Type: application/json
 
 {
-"libraryEventId": 123,
-"book": {
-"bookId": "4",
-"bookName": "Learn kafka",
-"bookAuthor": "Dmitrii Cheremisin"
-}
+  "libraryEventId": 1,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka and SpringBoot 2.5",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
 }

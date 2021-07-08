@@ -1,0 +1,320 @@
+PUT http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka and SpringBoot 2.5",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T005057.400.txt
+
+###
+
+PUT http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka and SpringBoot 2.5",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T005044.400.txt
+
+###
+
+PUT http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka and SpringBoot 2.5",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T004945.400.txt
+
+###
+
+PUT http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": 23,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka and SpringBoot 2.5",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T004930.200.json
+
+###
+
+PUT http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": 1,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka and SpringBoot 2.5",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T004855.200.json
+
+###
+
+POST http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "2",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T004804.201.json
+
+###
+
+POST http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T004749.201.json
+
+###
+
+POST http://localhost:8080/v1/libraryEvent/synchronous
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T004730.201.json
+
+###
+
+PUT http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+"libraryEventId": 123,
+"book": {
+"bookId": "4",
+"bookName": "Learn kafka",
+"bookAuthor": "Dmitrii Cheremisin"
+}
+}
+
+<> 2021-07-09T004647.200.json
+
+###
+
+POST http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T004635.201.json
+
+###
+
+POST http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "3",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T003538.201.json
+
+###
+
+POST http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "2",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T003535.201.json
+
+###
+
+POST http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T003530.201.json
+
+###
+
+POST http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "2",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T003452.201.json
+
+###
+
+POST http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T003430.201.json
+
+###
+
+POST http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T003355.201.json
+
+###
+
+POST http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T003222.201.json
+
+###
+
+POST http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T003108.201.json
+
+###
+
+POST http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T003021.201.json
+
+###
+
+POST http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+<> 2021-07-09T002849.201.json
+
+###
+
