@@ -301,3 +301,5 @@ kafka-run-class.bat kafka.tools.DumpLogSegments --deep-iteration --files /tmp/ka
 </p>
 </details>
 
+Ref: https://github.com/dilipsundarraj1/kafka-for-developers-using-spring-boot
+
