@@ -1,0 +1,51 @@
+###
+POST http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "1",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+###
+POST http://localhost:8080/v1/libraryEvent/synchronous
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "2",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+###
+POST http://localhost:8080/v1/libraryEvent/producerRecord
+Content-Type: application/json
+
+{
+  "libraryEventId": null,
+  "book": {
+    "bookId": "3",
+    "bookName": "Learn kafka",
+    "bookAuthor": "Dmitrii Cheremisin"
+  }
+}
+
+###
+PUT http://localhost:8080/v1/libraryEvent
+Content-Type: application/json
+
+{
+"libraryEventId": 123,
+"book": {
+"bookId": "4",
+"bookName": "Learn kafka",
+"bookAuthor": "Dmitrii Cheremisin"
+}
+}
