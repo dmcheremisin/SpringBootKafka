@@ -8,11 +8,11 @@ cd ~/kafka_2.12-2.8.0/bin
 ### Start Zookeper
 ./zookeeper-server-start.sh ../config/zookeeper.properties
 
-### Start Kafka 
-./kafka-server-start.sh ../config/server.properties 
-./kafka-server-start.sh ../config/server-1.properties 
-./kafka-server-start.sh ../config/server-2.properties 
-
+### Start Kafka brokers
+./kafka-server-start.sh ../config/server.properties  
+./kafka-server-start.sh ../config/server-1.properties  
+./kafka-server-start.sh ../config/server-2.properties  
+ 
 
 # Setting Up Kafka
 
