@@ -27,10 +27,10 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.isA;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @EmbeddedKafka(topics = {"library-events"}, partitions = 3)
@@ -60,14 +60,14 @@ class LibraryEventsConsumerAutoCommitIntegrationTest {
     @Autowired
     KafkaListenerEndpointRegistry endpointRegistry;
 
+    @Autowired
+    LibraryEventsRepository libraryEventsRepository;
+
     @SpyBean
     LibraryEventsConsumerAutoCommit libraryEventsConsumerSpy;
 
     @SpyBean
     LibraryEventsService libraryEventsServiceSpy;
-
-    @Autowired
-    LibraryEventsRepository libraryEventsRepository;
 
     @BeforeEach
     void setUp() {
@@ -126,5 +126,51 @@ class LibraryEventsConsumerAutoCommitIntegrationTest {
         LibraryEvent persistedLibraryEvent = libraryEventsRepository.findById(libraryEvent.getLibraryEventId()).get();
         assertEquals(updatedBook.getBookName(), persistedLibraryEvent.getBook().getBookName());
         assertEquals(updatedBook.getBookAuthor(), persistedLibraryEvent.getBook().getBookAuthor());
+    }
+
+    @Test
+    void shouldRetryOnceWhenPublishUpdateLibraryEventWithNullId() throws JsonProcessingException, ExecutionException, InterruptedException {
+        LibraryEvent libraryEvent = mapper.readValue(json, LibraryEvent.class);
+        libraryEvent.setLibraryEventId(null);
+        String updatedJson = mapper.writeValueAsString(libraryEvent);
+
+        kafkaTemplate.sendDefault(libraryEvent.getLibraryEventId(), updatedJson).get();
+
+        CountDownLatch latch = new CountDownLatch(1);
+        latch.await(3, TimeUnit.SECONDS);
+
+        verify(libraryEventsConsumerSpy, times(1)).onMessage(isA(ConsumerRecord.class));
+        verify(libraryEventsServiceSpy, times(1)).processLibraryEvent(isA(ConsumerRecord.class));
+    }
+
+    @Test
+    void shouldRetryOnceWhenPublishUpdateLibraryEventIsNotPresent() throws JsonProcessingException, ExecutionException, InterruptedException {
+        LibraryEvent libraryEvent = mapper.readValue(json, LibraryEvent.class);
+        libraryEvent.setLibraryEventId(2342343);
+        String updatedJson = mapper.writeValueAsString(libraryEvent);
+
+        kafkaTemplate.sendDefault(libraryEvent.getLibraryEventId(), updatedJson).get();
+
+        CountDownLatch latch = new CountDownLatch(1);
+        latch.await(3, TimeUnit.SECONDS);
+
+        verify(libraryEventsConsumerSpy, times(1)).onMessage(isA(ConsumerRecord.class));
+        verify(libraryEventsServiceSpy, times(1)).processLibraryEvent(isA(ConsumerRecord.class));
+    }
+
+    @Test
+    void shouldRetry3TimesWhenRecoverableException() throws JsonProcessingException, ExecutionException, InterruptedException {
+        LibraryEvent libraryEvent = mapper.readValue(json, LibraryEvent.class);
+        libraryEvent.setLibraryEventId(123);
+        String updatedJson = mapper.writeValueAsString(libraryEvent);
+
+        kafkaTemplate.sendDefault(libraryEvent.getLibraryEventId(), updatedJson).get();
+
+        CountDownLatch latch = new CountDownLatch(1);
+        latch.await(3, TimeUnit.SECONDS);
+
+        verify(libraryEventsConsumerSpy, times(4)).onMessage(isA(ConsumerRecord.class));
+        verify(libraryEventsServiceSpy, times(4)).processLibraryEvent(isA(ConsumerRecord.class));
+        verify(libraryEventsServiceSpy, times(1)).handleRecovery(isA(ConsumerRecord.class));
     }
 }
