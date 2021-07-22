@@ -15,6 +15,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -25,12 +26,14 @@ public class LibraryEventsService {
     private final LibraryEventsRepository libraryEventsRepository;
     private final ObjectMapper mapper;
 
+    private final List<Integer> recoverableIds = List.of(111, 222, 333);
+
     @SneakyThrows
     public void processLibraryEvent(ConsumerRecord<Integer, String> consumerRecord) {
         LibraryEvent libraryEvent = mapper.readValue(consumerRecord.value(), LibraryEvent.class);
         log.info("Library event: {}", libraryEvent);
 
-        if (libraryEvent.getLibraryEventId() != null && libraryEvent.getLibraryEventId() == 123) {
+        if (libraryEvent.getLibraryEventId() != null && recoverableIds.contains(libraryEvent.getLibraryEventId())) {
             throw new RecoverableDataAccessException("Temporary db issue");
         }
 

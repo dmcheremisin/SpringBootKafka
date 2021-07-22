@@ -1,0 +1,25 @@
+server:
+  port: 8081
+
+spring:
+  kafka:
+    template:
+      default-topic: library-events
+    consumer:
+      bootstrap-servers: ${spring.embedded.kafka.brokers}
+      key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: library-events-listener-group
+    producer:
+      bootstrap-servers: ${spring.embedded.kafka.brokers}
+      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  datasource:
+    url: jdbc:h2:mem:testdb
+  h2:
+    console:
+      enabled: true
+#  jpa:
+#    database: h2
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    generate-ddl: true`

@@ -11,6 +11,7 @@ import org.springframework.dao.RecoverableDataAccessException;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
+import org.springframework.kafka.listener.adapter.RetryingMessageListenerAdapter;
 import org.springframework.retry.RetryPolicy;
 import org.springframework.retry.backoff.FixedBackOffPolicy;
 import org.springframework.retry.policy.SimpleRetryPolicy;
@@ -48,8 +49,11 @@ public class LibraryEventsConsumerConfig {
                             log.info("Attribute name is: {}", attributeName);
                             log.info("Attribute value is: {}", context.getAttribute(attributeName));
                         });
-                ConsumerRecord<Integer, String> consumerRecord = (ConsumerRecord<Integer, String>) context.getAttribute("record");
-                libraryEventsService.handleRecovery(consumerRecord);
+                ConsumerRecord<Integer, String> record = (ConsumerRecord<Integer, String>)
+                        context.getAttribute(RetryingMessageListenerAdapter.CONTEXT_RECORD);
+                //libraryEventsService.handleRecovery(consumerRecord);
+                log.error( "Kafka listener recovery due to retries exhausted >>> Topic: {}, Headers: {} , Payload: {}",
+                        record.topic(), record.headers(), record.value());
             } else {
                 log.info("Inside the non recoverable logic");
                 throw new RuntimeException(context.getLastThrowable().getMessage());
