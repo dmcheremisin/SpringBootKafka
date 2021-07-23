@@ -2,6 +2,8 @@ server:
   port: 8081
 
 spring:
+  profiles:
+    active: prod
   kafka:
     template:
       default-topic: library-events
